@@ -2,9 +2,13 @@ from flask import Flask, render_template, request, redirect, url_for, session
 import os
 import json
 import random
+import logging
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
+
+# Set up logging
+app.logger.setLevel(logging.INFO)
 
 # Load questions from JSON file
 def load_questions():
@@ -54,7 +58,7 @@ def game():
         session['questions_asked'] = 0
     
     # Check if we've reached the maximum number of questions
-    if session.get('questions_asked', 0) >= 10:
+    if session.get('questions_asked', 0) >= 5:
         return redirect(url_for('result'))
     
     # Get the current question
@@ -69,10 +73,15 @@ def game():
 @app.route('/answer', methods=['POST'])
 def answer():
     if 'current_question' not in session:
-        return redirect(url_for('game'))
+        # If session is broken or expired, start over
+        return redirect(url_for('index'))
         
     choice = request.form.get('choice')
-    current_question = session['current_question']
+    current_question = session.get('current_question')
+    
+    app.logger.info(f"Received choice: {choice} for question: {current_question}")
+    
+    # Default to None for next question
     next_question = None
     
     # Record the answer
@@ -81,21 +90,28 @@ def answer():
         if current_question_obj:
             for option in current_question_obj["options"]:
                 if option["text"] == choice:
+                    # Store the effect of this choice
                     session['answers'][current_question] = option["effect"]
                     next_question = option["next_question"]
+                    app.logger.info(f"Effect: {option['effect']}, Next question: {next_question}")
                     break
     
     # Increment questions asked counter
     session['questions_asked'] = session.get('questions_asked', 0) + 1
+    app.logger.info(f"Questions asked: {session['questions_asked']}")
     
     # Set next question
     if next_question:
         session['current_question'] = next_question
     else:
         # If no next question specified, end the game
+        app.logger.info("No next question specified, redirecting to result")
         return redirect(url_for('result'))
     
+    # Make sure session changes are saved
     session.modified = True
+    
+    # Continue to the next question
     return redirect(url_for('game'))
 
 @app.route('/result')

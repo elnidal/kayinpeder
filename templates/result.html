@@ -4,6 +4,9 @@
 <div class="card shadow-lg mb-5">
     <div class="card-body text-center p-5">
         {% if result == "happy" %}
+            <div class="result-icon mb-3">
+                <i class="bi bi-emoji-smile-fill text-success" style="font-size: 4rem;"></i>
+            </div>
             <h2 class="card-title mb-4">Tebrikler! Kayınpederinizi mutlu ettiniz!</h2>
             <div class="result-image mb-4">
                 <img src="{{ url_for('static', filename='images/happy.jpg') }}" alt="Mutlu kayınpeder" class="img-fluid rounded">
@@ -13,6 +16,9 @@
                 Ailede saygın bir yeriniz var ve gelecekteki aile buluşmalarında favorilerden biri olacaksınız!
             </p>
         {% elif result == "neutral" %}
+            <div class="result-icon mb-3">
+                <i class="bi bi-emoji-neutral-fill text-warning" style="font-size: 4rem;"></i>
+            </div>
             <h2 class="card-title mb-4">Kayınpederiniz kararsız!</h2>
             <div class="result-image mb-4">
                 <img src="{{ url_for('static', filename='images/neutral.jpg') }}" alt="Kararsız kayınpeder" class="img-fluid rounded">
@@ -22,6 +28,9 @@
                 Daha fazla zaman geçirerek ve onu daha iyi tanıyarak ilişkinizi geliştirebilirsiniz.
             </p>
         {% else %}
+            <div class="result-icon mb-3">
+                <i class="bi bi-emoji-angry-fill text-danger" style="font-size: 4rem;"></i>
+            </div>
             <h2 class="card-title mb-4">Kayınpederiniz kızgın!</h2>
             <div class="result-image mb-4">
                 <img src="{{ url_for('static', filename='images/angry.jpg') }}" alt="Kızgın kayınpeder" class="img-fluid rounded">
@@ -32,7 +41,11 @@
             </p>
         {% endif %}
         
-        <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">Tekrar Oyna</a>
+        <div class="mt-5">
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                <i class="bi bi-arrow-repeat me-2"></i> Tekrar Oyna
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
