@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-lg mb-5">
+    <div class="card-body p-5">
+        <div class="progress mb-4">
+            {% set progress_percent = (session.questions_asked / 10) * 100 %}
+            <div class="progress-bar" role="progressbar" 
+                 style="width: {{ progress_percent }}%" 
+                 aria-valuenow="{{ session.questions_asked }}" 
+                 aria-valuemin="0" 
+                 aria-valuemax="10">
+                {{ session.questions_asked }} / 10
+            </div>
+        </div>
+        
+        <h2 class="card-title mb-4">{{ question.text }}</h2>
+        
+        {% if question.image %}
+        <div class="text-center mb-4">
+            <img src="{{ url_for('static', filename='images/' + question.image) }}" alt="Soru görseli" class="img-fluid rounded">
+        </div>
+        {% endif %}
+        
+        <form action="{{ url_for('answer') }}" method="post">
+            <div class="list-group mb-4">
+                {% for option in question.options %}
+                <button type="submit" name="choice" value="{{ option.text }}" class="list-group-item list-group-item-action p-3 mb-2 rounded">
+                    {{ option.text }}
+                </button>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

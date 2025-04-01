@@ -1,0 +1,100 @@
+{
+  "questions": [
+    {
+      "id": "start",
+      "text": "Bayram günü 6.30 da kayınpederime gider miyim?",
+      "options": [
+        {
+          "text": "Evet",
+          "effect": "positive",
+          "next_question": "question1"
+        },
+        {
+          "text": "Hayır",
+          "effect": "negative",
+          "next_question": "question1"
+        }
+      ]
+    },
+    {
+      "id": "question1",
+      "text": "Bayramın ilk günü öğleden sonra kayınpederime gider miyim?",
+      "options": [
+        {
+          "text": "Evet",
+          "effect": "positive",
+          "next_question": "question2"
+        },
+        {
+          "text": "Hayır",
+          "effect": "negative",
+          "next_question": "question2"
+        }
+      ]
+    },
+    {
+      "id": "question2",
+      "text": "Bayramın ikinci günü evde misafir varken kayınpederime gider miyim?",
+      "options": [
+        {
+          "text": "Evet",
+          "effect": "positive",
+          "next_question": "question3"
+        },
+        {
+          "text": "Hayır",
+          "effect": "negative",
+          "next_question": "question3"
+        }
+      ]
+    },
+    {
+      "id": "question3",
+      "text": "Bayramlarda ilk kayınpederime mi giderim?",
+      "options": [
+        {
+          "text": "Evet",
+          "effect": "positive",
+          "next_question": "question4"
+        },
+        {
+          "text": "Hayır",
+          "effect": "negative",
+          "next_question": "question4"
+        }
+      ]
+    },
+    {
+      "id": "question4",
+      "text": "Kayınpederim mi yoksa nişanlım mı?",
+      "options": [
+        {
+          "text": "Kayınpederim",
+          "effect": "positive",
+          "next_question": "final"
+        },
+        {
+          "text": "Nişanlım",
+          "effect": "negative",
+          "next_question": "final"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "text": "Son soru: Kayınpederiniz size \"Kızıma nasıl davranıyorsun?\" diye sordu. Ne cevap verirsiniz?",
+      "options": [
+        {
+          "text": "O benim hayatımın en değerli varlığı, ona her zaman saygı ve sevgiyle davranıyorum",
+          "effect": "positive",
+          "next_question": null
+        },
+        {
+          "text": "Elimden geldiğince iyi davranmaya çalışıyorum",
+          "effect": "negative",
+          "next_question": null
+        }
+      ]
+    }
+  ]
+}

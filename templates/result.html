@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-lg mb-5">
+    <div class="card-body text-center p-5">
+        {% if result == "happy" %}
+            <h2 class="card-title mb-4">Tebrikler! Kayınpederinizi mutlu ettiniz!</h2>
+            <div class="result-image mb-4">
+                <img src="{{ url_for('static', filename='images/happy.jpg') }}" alt="Mutlu kayınpeder" class="img-fluid rounded">
+            </div>
+            <p class="card-text lead mb-4">
+                Kayınpederiniz sizden çok memnun! Artık sizi gerçek bir aile üyesi olarak görüyor ve size güveniyor.
+                Ailede saygın bir yeriniz var ve gelecekteki aile buluşmalarında favorilerden biri olacaksınız!
+            </p>
+        {% elif result == "neutral" %}
+            <h2 class="card-title mb-4">Kayınpederiniz kararsız!</h2>
+            <div class="result-image mb-4">
+                <img src="{{ url_for('static', filename='images/neutral.jpg') }}" alt="Kararsız kayınpeder" class="img-fluid rounded">
+            </div>
+            <p class="card-text lead mb-4">
+                Kayınpederiniz sizin hakkınızda tam bir karara varamadı. Bazı davranışlarınızı beğendi, bazılarını ise pek tasvip etmedi.
+                Daha fazla zaman geçirerek ve onu daha iyi tanıyarak ilişkinizi geliştirebilirsiniz.
+            </p>
+        {% else %}
+            <h2 class="card-title mb-4">Kayınpederiniz kızgın!</h2>
+            <div class="result-image mb-4">
+                <img src="{{ url_for('static', filename='images/angry.jpg') }}" alt="Kızgın kayınpeder" class="img-fluid rounded">
+            </div>
+            <p class="card-text lead mb-4">
+                Maalesef kayınpederinizi pek memnun edemediniz. Seçimleriniz onun hoşuna gitmedi ve sizin hakkınızda olumsuz düşüncelere sahip.
+                Belki de bir dahaki sefere farklı yaklaşımlar deneyebilirsiniz!
+            </p>
+        {% endif %}
+        
+        <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">Tekrar Oyna</a>
+    </div>
+</div>
+{% endblock %}

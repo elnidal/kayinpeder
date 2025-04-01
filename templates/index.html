@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card shadow-lg mb-5">
+    <div class="card-body text-center p-5">
+        <h2 class="card-title mb-4">Kayınpederinizi ne kadar mutlu edebilirsiniz?</h2>
+        
+        <div class="hero-image mb-4">
+            <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Kahraman" class="img-fluid rounded hero-img">
+        </div>
+        
+        <p class="card-text lead mb-4">
+            Bu eğlenceli oyunda kayınpederinizle ilgili çeşitli durumlarla karşılaşacaksınız. 
+            Vereceğiniz kararlar, kayınpederinizin sizin hakkınızdaki düşüncelerini etkileyecek.
+            10 soru sonunda, kayınpederinizi mutlu etmeyi başarabildiniz mi göreceğiz!
+        </p>
+        <a href="{{ url_for('game') }}" class="btn btn-primary btn-lg">Oyuna Başla</a>
+    </div>
+</div>
+{% endblock %}
